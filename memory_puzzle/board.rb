@@ -53,6 +53,10 @@ class Board
         end
         @grid[pos[0]][pos[1]].value
     end
+
+    def [](pos)
+        @grid[pos[0]][pos[1]]
+    end
 end
 
 board1=Board.new(4)
