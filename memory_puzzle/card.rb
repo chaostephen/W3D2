@@ -1,4 +1,6 @@
 class Card
+    attr_reader :shown, :value
+    
     def initialize(value, shown)
         @value = value
         @shown = shown
