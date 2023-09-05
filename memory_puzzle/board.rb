@@ -58,3 +58,5 @@ end
 board1=Board.new(4)
 board1.populate
 board1.render
+board1.reveal([0, 0])
+board1.render
