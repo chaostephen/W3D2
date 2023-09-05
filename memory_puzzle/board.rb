@@ -1,21 +1,34 @@
 require_relative "card.rb"
 # require_relative "game.rb"
 class Board
-    def initialize(size)
+    def initialize(size=4)
         @grid = Array.new(size){Array.new(size)}
     end
 
     def populate
         array="23456789TJQKA".split("")
+        elements=(@grid.length**2)/2
+        rand_cards=array.sample(elements)
+        rand_cards+=rand_cards
         (0...@grid.length).each do |row|
             (0...@grid.length).each do |col|
-                @grid[row][col]=Card.new(array.sample,false)
+                @grid[row][col]=Card.new(rand_cards.shift,false)
             end
         end
     end
 
     def render
-        @grid
+        @grid.each do |row|
+            arr=[]
+            row.each do |card|
+                if card.shown==false
+                    arr<<"_"
+                else
+                    arr<<card.value
+                end
+            end
+            puts arr.join(" ")
+        end
     end
 
     def won?
@@ -42,6 +55,6 @@ class Board
     end
 end
 
-# board1=Board.new(3)
-# board1.populate
-# p board1
+board1=Board.new(4)
+board1.populate
+board1.render
